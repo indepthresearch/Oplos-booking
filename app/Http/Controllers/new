@@ -1,0 +1,10 @@
+ if ($request->isMethod('POST')) {
+            $token = $request->request->get('stripeToken');
+            \Stripe\Stripe::setApiKey("sk_test_BzfLz9d0ubE5jba7Dh3bwr62");
+            \Stripe\Charge::create(array(
+              "amount" => Cart::total()* 100,
+              "currency" => "KES",
+              "source" => $token,
+              "description" => "First test charge!"
+            ));
+        }
